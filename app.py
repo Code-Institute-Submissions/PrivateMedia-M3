@@ -3,12 +3,28 @@ from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
 
+
+if os.path.exists("env.py"):
+    import env
+
+
 app = Flask(__name__)
+app.config["MONGO_DBNAME"] = 'private_media'
+app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost')
+
+mongo = PyMongo(app)
 
 
 @app.route('/')
 def login():
     return render_template('register.html')
+
+
+@app.route('/register', methods=['POST'])
+def register_users():
+    users = mongo.db.Users
+    users.insert(request.form.to_dict())
+    return render_template("login.html")
 
 
 if __name__ == '__main__':
