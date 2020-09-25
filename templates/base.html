@@ -14,6 +14,9 @@
 
 		<link href="//fonts.googleapis.com/css?family=Quattrocento+Sans:400,400i,700,700i" rel="stylesheet"/>
 		<link href="//fonts.googleapis.com/css?family=Mukta:200,300,400,500,600,700,800" rel="stylesheet"/>
+        {{ toastr.include_jquery() }}
+        {{ toastr.include_toastr_css() }}
+        {{ toastr.message() }}
 	</head>
 
 		<body>
@@ -44,5 +47,6 @@
 				</div>
 			</div>
 		</section>
+        {{ toastr.include_toastr_js() }}
 	</body>
 </html>
