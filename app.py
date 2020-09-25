@@ -1,7 +1,8 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, flash, request, url_for
 from flask_pymongo import PyMongo
-from bson.objectid import ObjectId 
+from bson.objectid import ObjectId
+from flask_toastr import Toastr 
 
 
 if os.path.exists("env.py"):
@@ -9,10 +10,12 @@ if os.path.exists("env.py"):
 
 
 app = Flask(__name__)
+app.secret_key = 'some_secret'
 app.config["MONGO_DBNAME"] = 'private_media'
 app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost')
 
 mongo = PyMongo(app)
+toastr = Toastr(app)
 
 
 @app.route('/')
@@ -24,6 +27,7 @@ def login():
 def register_users():
     users = mongo.db.Users
     users.insert(request.form.to_dict())
+    flash("User Created", 'success')
     return render_template("login.html")
 
 
