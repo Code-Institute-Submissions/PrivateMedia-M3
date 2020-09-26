@@ -1,6 +1,6 @@
 {% extends 'base.html'%} 
 				{% block header %}
-                <a href="login.html" class="">login</a>
+                <a href="{{ url_for('login') }}" class="">login</a>
                  {% endblock %}
 
 {% block content %}
@@ -14,7 +14,7 @@
 							<div class="field-group">
 								<span class="fa fa-lock" aria-hidden="true"></span>
 								<div class="wthree-field">
-									<input name="password" id="myInput" type="Password" placeholder="Password" required/>
+									<input name="password" id="myInput" type="Password" placeholder="Password"/>
 								</div>
 							</div>
 							<div class="field-group">
