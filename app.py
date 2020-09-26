@@ -19,11 +19,17 @@ toastr = Toastr(app)
 
 
 @app.route('/')
-def login():
+@app.route('/register')
+def register():
     return render_template('register.html')
 
 
-@app.route('/register', methods=['POST'])
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+
+@app.route('/login', methods=['POST'])
 def register_users():
     users = mongo.db.Users
     users.insert(request.form.to_dict())
