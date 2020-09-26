@@ -1,8 +1,9 @@
 import os
-from flask import Flask, render_template, redirect, flash, request, url_for
+from flask import Flask, render_template, redirect, flash, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from flask_toastr import Toastr 
+from flask_toastr import Toastr
+import bcrypt
 
 
 if os.path.exists("env.py"):
@@ -29,12 +30,23 @@ def login():
     return render_template('login.html')
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/register', methods=['POST', 'GET'])
 def register_users():
-    users = mongo.db.Users
-    users.insert(request.form.to_dict())
-    flash("User Created", 'success')
-    return render_template("login.html")
+    if request.method == 'POST':
+        users = mongo.db.Users
+        existing_user = users.find_one({'name' : request.form['username']})
+
+        if existing_user is None:
+            hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
+            users.insert({'name' : request.form['username'], 'password' : hashpass, 'address' : request.form['address'], 'dob' : request.form['dob'],'hobbies' : request.form['hobbies'], 'events' : request.form['events']})
+            session['username'] = request.form['username']
+            flash("User Created", 'success')
+            return redirect(url_for('login'))
+
+        flash("Username Already Exist", 'error')
+
+    return render_template('register.html')
+
 
 
 if __name__ == '__main__':
