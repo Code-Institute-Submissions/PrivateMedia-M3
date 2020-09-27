@@ -4,6 +4,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from flask_toastr import Toastr
 import bcrypt
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 if os.path.exists("env.py"):
@@ -19,33 +20,41 @@ mongo = PyMongo(app)
 toastr = Toastr(app)
 
 
+@app.route('/index')
+def index():
+    return render_template('index.html')
+
+
 @app.route('/')
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register():
-    return render_template('register.html')
-
-
-@app.route('/login')
-def login():
-    return render_template('login.html')
-
-
-@app.route('/register', methods=['POST', 'GET'])
-def register_users():
     if request.method == 'POST':
-        users = mongo.db.Users
-        existing_user = users.find_one({'name' : request.form['username']})
+        # Check if username exists in mongodb
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
 
-        if existing_user is None:
-            hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
-            users.insert({'name' : request.form['username'], 'password' : hashpass, 'address' : request.form['address'], 'dob' : request.form['dob'],'hobbies' : request.form['hobbies'], 'events' : request.form['events']})
-            session['username'] = request.form['username']
-            flash("User Created", 'success')
-            return redirect(url_for('login'))
+        if existing_user:
+            flash("Username already exists", 'error')
+            return redirect(url_for("register"))
 
-        flash("Username Already Exist", 'error')
+        register = {
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password")),
+            "dob": request.form.get("dob").lower(),
+            "address": request.form.get("address").lower(),
+            "hobbies": request.form.get("hobbies").lower(),
+            "events": request.form.get("events").lower()
 
-    return render_template('register.html')
+
+        }
+        mongo.db.users.insert_one(register)
+
+        # Put new user into a session cookie
+        session['user'] = request.form.get("username").lower()
+        flash("Registration Successful!", 'success')
+        return redirect(url_for("login", username=session["username"]))
+
+    return render_template("register.html")
 
 
 
