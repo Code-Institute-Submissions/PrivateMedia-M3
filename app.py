@@ -37,18 +37,19 @@ def login():
             if check_password_hash(
                existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
-                flash("Welcome, {}".format(request.form.get("username")), 'success')
-                return redirect(url_for("index", username=session["user"]))
+                flash("Welcome, {}".format(request.form.get("username")))
+                return redirect(url_for("profile", username=session["user"]))
             else:
                 # Invalid password match
-                flash("Incorrect Username and/or Password", 'error')
+                flash("Incorrect Username and/or Password")
                 return redirect(url_for("login"))
 
         else:
             # Username doesn't exist
-            flash("Incorrect Username and/or Password")
+            flash("Incorrect Username and/or Password", 'error')
             return redirect(url_for("login"))
     return render_template("login.html")
+
 
 @app.route('/')
 @app.route('/register', methods=['GET', 'POST'])
@@ -81,6 +82,33 @@ def register():
 
     return render_template("register.html")
 
+
+# Profile page
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    # Grab the session user's username from mongodb
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+
+    address = mongo.db.users.find_one(
+        {"username": session["user"]})["address"]
+
+    dob = mongo.db.users.find_one(
+        {"username": session["user"]})["dob"]
+
+    events = mongo.db.users.find_one(
+        {"username": session["user"]})["events"]
+
+    hobbies = mongo.db.users.find_one(
+        {"username": session["user"]})["hobbies"]
+
+    events = mongo.db.users.find_one(
+        {"username": session["user"]})["events"]
+
+    if session["user"]:
+        return render_template("index.html", username=username, address=address, dob=dob, events=events, hobbies=hobbies)
+
+    return redirect(url_for("login"))
 
 
 if __name__ == '__main__':
