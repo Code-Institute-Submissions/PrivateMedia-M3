@@ -87,26 +87,13 @@ def register():
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # Grab the session user's username from mongodb
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
+    active_user =  mongo.db.users.find_one(
+        {"username": session["user"]})
 
-    address = mongo.db.users.find_one(
-        {"username": session["user"]})["address"]
-
-    dob = mongo.db.users.find_one(
-        {"username": session["user"]})["dob"]
-
-    events = mongo.db.users.find_one(
-        {"username": session["user"]})["events"]
-
-    hobbies = mongo.db.users.find_one(
-        {"username": session["user"]})["hobbies"]
-
-    events = mongo.db.users.find_one(
-        {"username": session["user"]})["events"]
+    username = active_user["username"]
 
     if session["user"]:
-        return render_template("index.html", username=username, address=address, dob=dob, events=events, hobbies=hobbies)
+        return render_template("index.html", username=username, active_user=active_user)
 
     return redirect(url_for("login"))
 

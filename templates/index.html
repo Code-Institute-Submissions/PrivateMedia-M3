@@ -58,17 +58,17 @@
 							<hr />
 							<p>
 								<i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i>
-								{{username}}
+								{{active_user.username}}
 							</p>
 							<p>
 								<i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>
-								{{address}}
+								{{active_user.address}}
 							</p>
 							<p>
 								<i
 									class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"
 								></i>
-								{{dob}}
+								{{active_user.dob}}
 							</p>
 						</div>
 					</div>
@@ -79,7 +79,7 @@
 						<div class="w3-container">
 							<p>Hobbies</p>
 							<p>
-								<span class="w3-tag w3-small w3-theme-d5">{{hobbies}}</span>
+								<span class="w3-tag w3-small w3-theme-d5">{{active_user.hobbies}}</span>
 							</p>
 						</div>
 					</div>
@@ -135,7 +135,7 @@
 					<div class="w3-card w3-round w3-white w3-center">
 						<div class="w3-container">
 							<p>Upcoming Events:</p>
-							<p>{{events}}</p>
+							<p>{{active_user.events}}</p>
 						</div>
 					</div>
 					<br />
