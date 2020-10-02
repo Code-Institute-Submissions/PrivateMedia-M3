@@ -99,7 +99,7 @@ def profile(username):
     if session["user"]:
         return render_template("index.html", username=username, active_user=active_user)
 
-    return redirect(url_for("login"))
+    return redirect(url_for("index", username=username, active_user=active_user))
 
 
 @app.route("/resetPassword", methods=["GET", "POST"])
@@ -125,10 +125,31 @@ def resetPassword():
         else:
             # Username doesn't exist
             flash("Please Enter a valid Username", 'error')
-            return redirect(url_for("login"))
+            return redirect(url_for("forgotPassword"))
 
-    return render_template("login.html")
+    return render_template("forgotPassword")
 
+
+@app.route("/new_post/<user>", methods=["GET", "POST"])
+def new_post(user):
+    # Grab the session user's username from mongodb
+    userMan = mongo.db.users.find_one(
+            {"username": user})
+
+    if userMan:
+        upload_post = {
+            "date": datetime.datetime.utcnow(),
+            "post": request.form.get("post"),
+            "user_id": user
+
+            }
+        mongo.db.posts.insert_one(upload_post)
+        flash("New Post!", 'success')
+        users_post = mongo.db.posts.find_one(
+            {"user_id": user})
+        return redirect(url_for("profile", username=user, users_post=users_post))
+
+    return redirect(url_for("index"))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
