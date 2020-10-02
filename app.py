@@ -5,6 +5,7 @@ from bson.objectid import ObjectId
 from flask_toastr import Toastr
 import bcrypt
 from werkzeug.security import generate_password_hash, check_password_hash
+import datetime
 
 
 if os.path.exists("env.py"):
@@ -25,6 +26,12 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/forgot-password')
+def forgotPassword():
+    return render_template('resetPassword.html')
+
+
+@app.route('/')
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -41,7 +48,7 @@ def login():
                 return redirect(url_for("profile", username=session["user"]))
             else:
                 # Invalid password match
-                flash("Incorrect Username and/or Password")
+                flash("Incorrect Username and/or Password", 'error')
                 return redirect(url_for("login"))
 
         else:
@@ -51,7 +58,6 @@ def login():
     return render_template("login.html")
 
 
-@app.route('/')
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -70,8 +76,6 @@ def register():
             "address": request.form.get("address").lower(),
             "hobbies": request.form.get("hobbies").lower(),
             "events": request.form.get("events").lower()
-
-
         }
         mongo.db.users.insert_one(register)
 
@@ -87,7 +91,7 @@ def register():
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # Grab the session user's username from mongodb
-    active_user =  mongo.db.users.find_one(
+    active_user = mongo.db.users.find_one(
         {"username": session["user"]})
 
     username = active_user["username"]
@@ -96,6 +100,34 @@ def profile(username):
         return render_template("index.html", username=username, active_user=active_user)
 
     return redirect(url_for("login"))
+
+
+@app.route("/resetPassword", methods=["GET", "POST"])
+def resetPassword():
+    if request.method == "POST":
+        # Check username exists in mongodb
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            # Ensure hashed password matches user input
+            mongo.db.users.update({'_id': ObjectId(existing_user["_id"])},
+            {
+                "username": existing_user["username"],
+                "password": generate_password_hash(request.form.get("password")),
+                "dob": existing_user["dob"],
+                "address": existing_user["address"],
+                "hobbies": existing_user["hobbies"],
+                "events": existing_user["events"]
+            })
+            flash("Password Changed", 'success')
+            return redirect(url_for("login"))
+        else:
+            # Username doesn't exist
+            flash("Please Enter a valid Username", 'error')
+            return redirect(url_for("login"))
+
+    return render_template("login.html")
 
 
 if __name__ == '__main__':
