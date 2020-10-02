@@ -32,3 +32,29 @@ footer{
 #userProfile{
    text-decoration: none
 }
+
+@media only screen and (max-width: 600px) {
+    #postText{
+margin: 0px;
+    width: 214px;
+    height: 94px;
+}
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    #postText{
+     margin: 0px;
+    width: 486px;
+    height: 148px;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    #postText{
+    margin: 0px;
+    height: 142px;
+    width: 700px;
+    }
+}
