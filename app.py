@@ -57,6 +57,13 @@ def login():
     return render_template("login.html")
 
 
+@app.route('/logout')
+def logout():
+    # remove username from session
+    session.pop('username', None)
+    return redirect(url_for('login'))
+
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
