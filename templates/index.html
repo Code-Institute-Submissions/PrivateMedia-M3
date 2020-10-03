@@ -109,21 +109,26 @@
 					</div>
 
 					<div class="w3-container w3-card w3-white w3-round w3-margin">
+                        {% for post in users_post %}
+                            {% if post.user_id == active_user.username %}
 						<br />
-						<span class="w3-right w3-opacity">1 min</span>
-						<h4>{{active_user.username}}</h4>
+						<span class="w3-right w3-opacity">{{post.date}}</span>
+						<span>{{post.user_id}}</span>
 						<br />
-						<hr class="w3-clear" />
+                          <hr class="w3-clear" />
+               
 						<p >
-                            This is the space for my updates
+                           {{post.post}}
 						</p>
-
 						<button type="button" class="w3-button w3-theme-d1 w3-margin-bottom">
 							<i class="fa fa-edit"></i> Edit
 						</button>
 						<button type="button" class="w3-button w3-theme-d1 w3-margin-bottom">
 							<i class="fa fa-trash"></i> Delete
 						</button>
+                        <hr class="w3-clear" />
+                            {% endif %}
+                        {% endfor %}
 					</div>
 
 					<!-- End Middle Column -->
