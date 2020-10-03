@@ -120,12 +120,12 @@
 						<p >
                            {{post.post}}
 						</p>
-						<button type="button" class="w3-button w3-theme-d1 w3-margin-bottom">
+						<a class="w3-button w3-theme-d1 w3-margin-bottom">
 							<i class="fa fa-edit"></i> Edit
-						</button>
-						<button type="button" class="w3-button w3-theme-d1 w3-margin-bottom">
+						</a>
+						<a href="{{url_for('delete_post', post_id=post._id, user=post.user_id)}}" class="w3-button w3-theme-d1 w3-margin-bottom">
 							<i class="fa fa-trash"></i> Delete
-						</button>
+						</a>
                         <hr class="w3-clear" />
                             {% endif %}
                         {% endfor %}
