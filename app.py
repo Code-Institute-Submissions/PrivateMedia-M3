@@ -3,9 +3,8 @@ from flask import Flask, render_template, redirect, flash, request, url_for, ses
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from flask_toastr import Toastr
-import bcrypt
 from werkzeug.security import generate_password_hash, check_password_hash
-import datetime
+import time
 
 
 if os.path.exists("env.py"):
@@ -94,12 +93,16 @@ def profile(username):
     active_user = mongo.db.users.find_one(
         {"username": session["user"]})
 
+    users_post = mongo.db.posts.find()
+
     username = active_user["username"]
 
     if session["user"]:
-        return render_template("index.html", username=username, active_user=active_user)
+        return render_template("index.html", username=username,
+                               active_user=active_user, users_post=users_post)
 
-    return redirect(url_for("index", username=username, active_user=active_user))
+    return redirect(url_for("index", username=username,
+                            active_user=active_user))
 
 
 @app.route("/resetPassword", methods=["GET", "POST"])
@@ -114,7 +117,8 @@ def resetPassword():
             mongo.db.users.update({'_id': ObjectId(existing_user["_id"])},
             {
                 "username": existing_user["username"],
-                "password": generate_password_hash(request.form.get("password")),
+                "password": generate_password_hash(
+                            request.form.get("password")),
                 "dob": existing_user["dob"],
                 "address": existing_user["address"],
                 "hobbies": existing_user["hobbies"],
@@ -138,18 +142,16 @@ def new_post(user):
 
     if userMan:
         upload_post = {
-            "date": datetime.datetime.utcnow(),
+            "date": time.strftime("%Y-%m-%d %H:%M"),
             "post": request.form.get("post"),
             "user_id": user
-
             }
+
         mongo.db.posts.insert_one(upload_post)
         flash("New Post!", 'success')
-        users_post = mongo.db.posts.find_one(
-            {"user_id": user})
-        return redirect(url_for("profile", username=user, users_post=users_post))
+        return redirect(url_for("profile", username=user))
 
-    return redirect(url_for("index"))
+    return render_template("index")
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
