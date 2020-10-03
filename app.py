@@ -14,7 +14,7 @@ if os.path.exists("env.py"):
 app = Flask(__name__)
 app.secret_key = 'some_secret'
 app.config["MONGO_DBNAME"] = 'private_media'
-app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost')
+app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 
 mongo = PyMongo(app)
 toastr = Toastr(app)
@@ -158,7 +158,15 @@ def new_post(user):
         flash("New Post!", 'success')
         return redirect(url_for("profile", username=user))
 
-    return render_template("index")
+    return redirect(url_for("profile", username=user))
+
+
+@app.route('/delete_post/<post_id>/<user>')
+def delete_post(post_id, user):
+    mongo.db.posts.remove({'_id': ObjectId(post_id)})
+    flash("Deleted!", 'success')
+    return redirect(url_for("profile", username=user, user=user))
+
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
