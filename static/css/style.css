@@ -33,6 +33,11 @@ footer{
    text-decoration: none
 }
 
+.a:hover, .button:hover{
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, .1)
+}
+
 @media only screen and (max-width: 600px) {
     .postText{
 margin: 0px;
