@@ -168,6 +168,26 @@ def delete_post(post_id, user):
     return redirect(url_for("profile", username=user, user=user))
 
 
+@app.route('/edit_post/<post_id>/<user>')
+def edit_post(post_id, user):
+    return render_template('editPost.html',
+                           current_post=mongo.db.posts.find_one(
+                              {'_id': ObjectId(post_id)}),
+                           post_id=post_id, user=user)
+
+
+@app.route('/update_post/<post_id>/<user>', methods=["GET", "POST"])
+def update_post(post_id, user):
+    mongo.db.posts.update(
+        {'_id': ObjectId(post_id)},
+        {'post': request.form.get('post_content'),
+         "date": time.strftime("%Y-%m-%d %H:%M"),
+         "user_id": user}),
+
+    return redirect(url_for("profile", username=user, user=user,
+                            ))
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
