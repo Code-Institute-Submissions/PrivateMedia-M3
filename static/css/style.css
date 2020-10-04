@@ -34,7 +34,7 @@ footer{
 }
 
 @media only screen and (max-width: 600px) {
-    #postText{
+    .postText{
 margin: 0px;
     width: 214px;
     height: 94px;
@@ -43,7 +43,7 @@ margin: 0px;
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-    #postText{
+    .postText{
      margin: 0px;
     width: 486px;
     height: 148px;
@@ -52,7 +52,7 @@ margin: 0px;
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-    #postText{
+    .postText{
     margin: 0px;
     height: 142px;
     width: 700px;
