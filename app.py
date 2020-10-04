@@ -7,10 +7,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import time
 
 
-if os.path.exists("env.py"):
-    import env
-
-
 app = Flask(__name__)
 app.secret_key = 'some_secret'
 app.config["MONGO_DBNAME"] = 'private_media'
@@ -88,7 +84,7 @@ def register():
         # Put new user into a session cookie
         session['user'] = request.form.get("username").lower()
         flash("Registration Successful!", 'success')
-        return redirect(url_for("login", username=session["username"]))
+        return redirect(url_for("login", username=session["user"]))
 
     return render_template("register.html")
 
