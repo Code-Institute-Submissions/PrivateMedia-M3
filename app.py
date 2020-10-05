@@ -183,7 +183,8 @@ def update_post(post_id, user):
         {'_id': ObjectId(post_id)},
         {'post': request.form.get('post_content'),
          "date": time.strftime("%Y-%m-%d %H:%M"),
-         "user_id": user}),
+         "user_id": user})
+    flash("Updated!", 'success')
 
     return redirect(url_for("profile", username=user, user=user,
                             ))
