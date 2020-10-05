@@ -1,4 +1,4 @@
-{% extends 'indexBase.html'%} 
+{% extends 'indexBase.html'%}
 				{% block index_Base %}
 				<!-- Left Column -->
 				<div class="w3-col m3">
@@ -69,8 +69,7 @@
 					</div>
 
 					<div class="w3-container w3-card w3-white w3-round w3-margin">
-                        {% for post in users_post %}
-                            {% if post.user_id == active_user.username %}
+                        {% for post in user_post%}
 						<br />
 						<span class="w3-right w3-opacity">{{post.date}}</span>
 						<span>{{post.user_id}}</span>
@@ -87,12 +86,12 @@
 							<i class="fa fa-trash"></i> Delete
 						</a>
                         <hr class="w3-clear" />
-                            {% endif %}
                         {% endfor %}
 					</div>
 
 					<!-- End Middle Column -->
 				</div>
+
 
 				<!-- Right Column -->
 				<div class="w3-col m2">
