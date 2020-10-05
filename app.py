@@ -1,11 +1,15 @@
 import os
-from flask import Flask, render_template, redirect, flash, request, url_for, session
-from flask_pymongo import PyMongo
+from flask import (
+    Flask, render_template, redirect, flash, request, url_for, session)
+from flask_pymongo import PyMongo, pymongo, DESCENDING
 from bson.objectid import ObjectId
 from flask_toastr import Toastr
 from werkzeug.security import generate_password_hash, check_password_hash
 import time
+import math
 
+if os.path.exists("env.py"):
+  import env
 
 app = Flask(__name__)
 app.secret_key = 'some_secret'
@@ -96,16 +100,17 @@ def profile(username):
     active_user = mongo.db.users.find_one(
         {"username": session["user"]})
 
-    users_post = mongo.db.posts.find()
-
     username = active_user["username"]
+    user_post = mongo.db.posts.find({"user_id":
+                                    session["user"]}).sort("_id", -1)
 
     if session["user"]:
         return render_template("index.html", username=username,
-                               active_user=active_user, users_post=users_post)
+                               active_user=active_user,
+                               user_post=user_post)
 
     return redirect(url_for("index", username=username,
-                            active_user=active_user))
+                            active_user=active_user, user_post=user_post))
 
 
 @app.route("/resetPassword", methods=["GET", "POST"])
