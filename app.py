@@ -78,6 +78,7 @@ def register():
         register = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password")),
+            "secret": request.form.get("secret").lower(),
             "dob": request.form.get("dob").lower(),
             "address": request.form.get("address").lower(),
             "hobbies": request.form.get("hobbies").lower(),
@@ -127,6 +128,7 @@ def resetPassword():
                 "username": existing_user["username"],
                 "password": generate_password_hash(
                             request.form.get("password")),
+                "secret": existing_user["secret"],
                 "dob": existing_user["dob"],
                 "address": existing_user["address"],
                 "hobbies": existing_user["hobbies"],
@@ -201,12 +203,12 @@ def edit_profile(profile_id, user):
 
 @app.route('/update_profile/<profile_id>/<user>', methods=["GET", "POST"])
 def update_profile(profile_id, user):
-    existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
     mongo.db.users.update(
         {'_id': ObjectId(profile_id)},
         {"username": request.form.get("username").lower(),
-            "password": existing_user["password"],
+            "password": generate_password_hash(
+                            request.form.get("password")),
+            "secret": request.form.get("secret").lower(),
             "dob": request.form.get("dob").lower(),
             "address": request.form.get("address").lower(),
             "hobbies": request.form.get("hobbies").lower(),
