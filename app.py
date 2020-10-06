@@ -121,7 +121,11 @@ def resetPassword():
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
-        if existing_user:
+        secret = existing_user["secret"]
+
+        user_secret = request.form.get("secret").lower()
+
+        if existing_user and (user_secret == secret):
             # Ensure hashed password matches user input
             mongo.db.users.update({'_id': ObjectId(existing_user["_id"])},
             {
@@ -138,7 +142,7 @@ def resetPassword():
             return redirect(url_for("login"))
         else:
             # Username doesn't exist
-            flash("Please Enter a valid Username", 'error')
+            flash("No Match Found", 'error')
             return redirect(url_for("forgotPassword"))
 
     return render_template("forgotPassword")
