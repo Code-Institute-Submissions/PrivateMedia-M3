@@ -4,11 +4,17 @@
                  {% endblock %}
 
 {% block content %}	
-<form action="{{ url_for('update_profile', profile_id=profile_id, user=current_profile.username) }}" method="post" >
+<form action="{{ url_for('update_profile', profile_id=profile_id, user=current_profile.username) }}" method="post" >  
 							<div class="field-group">
 								<span class="fa fa-user" aria-hidden="true"></span>
 								<div class="wthree-field">
 									<input name="username" id="text1" type="text" value="{{current_profile.username}}" placeholder="Username" required/>
+								</div>
+							</div>
+                        <div class="field-group">
+								<span class="fa fa-mask" aria-hidden="true"></span>
+								<div class="wthree-field">
+									<input name="secret" value="{{current_profile.secret}}" id="secret" type="text" placeholder="Enter Secret Word"/>
 								</div>
 							</div>
 							<div class="field-group">
@@ -33,6 +39,12 @@
 								<span class="fas fa-calendar-check" aria-hidden="true"></span>
 								<div class="wthree-field">
 									<input name="events" id="myInpt" value="{{current_profile.events}}" type="text" placeholder="Upcoming Event"/>
+								</div>
+							</div>
+                            <div class="field-group">
+								<span class="fas fa-lock" aria-hidden="true"></span>
+								<div class="wthree-field">
+								<input name="password" id="password" value="{{current_profile.password}}" type="password" placeholder="Password"/>
 								</div>
 							</div>
 							<div class="wthree-field">
