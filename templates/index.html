@@ -5,8 +5,8 @@
 					<!-- Profile -->
 					<div class="w3-card w3-round w3-white">
 						<div class="w3-container">
-							<a id="userProfile" href=""
-								><h4 class="w3-center"><i class="fa fa-edit"></i> My Profile</h4></a
+							<a id="userProfile" href="{{ url_for('edit_profile', profile_id=active_user._id, user=active_user.username) }}" 
+								><h4 class="w3-center"><i class="fa fa-edit"></i> Edit Profile</h4></a
 							>
 							<p class="w3-center">
 								<img id="profileImg"
@@ -91,8 +91,6 @@
 
 					<!-- End Middle Column -->
 				</div>
-
-
 				<!-- Right Column -->
 				<div class="w3-col m2">
 					<div class="w3-card w3-round w3-white w3-center">
