@@ -1,0 +1,63 @@
+{% extends 'base.html'%} 
+				{% block header %}
+                <a href="{{ url_for('profile', username=current_profile.username) }}" class="">Home</a>
+                 {% endblock %}
+
+{% block content %}	
+<form action="{{ url_for('update_profile', profile_id=profile_id, user=current_profile.username) }}" method="post" >
+							<div class="field-group">
+								<span class="fa fa-user" aria-hidden="true"></span>
+								<div class="wthree-field">
+									<input name="username" id="text1" type="text" value="{{current_profile.username}}" placeholder="Username" required/>
+								</div>
+							</div>
+							<div class="field-group">
+								<span class="fa fa-home" aria-hidden="true"></span>
+								<div class="wthree-field">
+									<input name="address" value="{{current_profile.address}}" id="putIn" type="text" placeholder="London, UK"/>
+								</div>
+							</div>
+							<div class="field-group">
+								<span class="fa fa-birthday-cake" aria-hidden="true"></span>
+								<div class="wthree-field">
+									<input name="dob" value="{{current_profile.dob}}" id="mnput" type="text" placeholder="April 1, 1993"/>
+								</div>
+							</div>
+							<div class="field-group">
+								<span class="fas fa-skiing" aria-hidden="true"></span>
+								<div class="wthree-field">
+									<input name="hobbies" value="{{current_profile.hobbies}}" id="hobbies" type="text" placeholder="Hobbies"/>
+								</div>
+							</div>
+							<div class="field-group">
+								<span class="fas fa-calendar-check" aria-hidden="true"></span>
+								<div class="wthree-field">
+									<input name="events" id="myInpt" value="{{current_profile.events}}" type="text" placeholder="Upcoming Event"/>
+								</div>
+							</div>
+							<div class="wthree-field">
+								<button type="submit" class="btn">Update</button>
+							</div>
+						</form>
+                        							<div class="wthree-field">
+								<button onclick="document.getElementById('id01').style.display='block'" style="background-color:#9b0707" type="submit" class="btn">Delete Account</button>
+							</div>
+									
+							
+                            <ul class="list-login-bottom">
+								<li class="clearfix"></li>
+							</ul>
+                              <div id="id01" class="w3-modal">
+    <div class="w3-modal-content">
+      <div class="w3-container">
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+<p> Are you sure you want to delete your account?</p>
+ <ul class="list-login-bottom">
+								<li class="clearfix"></li>
+							</ul>
+<p> <a style="background-color:red; color:white" href="{{ url_for('delete_profile', profile_id=profile_id) }}" type="button" class="w3-button w3-theme-d1 w3-margin-bottom">Delete</a></p>
+      </div>
+    </div>
+
+  </div>
+{% endblock %} 
