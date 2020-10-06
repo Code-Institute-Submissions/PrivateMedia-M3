@@ -190,6 +190,40 @@ def update_post(post_id, user):
                             ))
 
 
+@app.route('/edit_profile/<profile_id>/<user>')
+def edit_profile(profile_id, user):
+    return render_template('updateProfile.html',
+                           current_profile=mongo.db.users.find_one(
+                              {'_id': ObjectId(profile_id)}),
+                           profile_id=profile_id, user=user
+                           )
+
+
+@app.route('/update_profile/<profile_id>/<user>', methods=["GET", "POST"])
+def update_profile(profile_id, user):
+    existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+    mongo.db.users.update(
+        {'_id': ObjectId(profile_id)},
+        {"username": request.form.get("username").lower(),
+            "password": existing_user["password"],
+            "dob": request.form.get("dob").lower(),
+            "address": request.form.get("address").lower(),
+            "hobbies": request.form.get("hobbies").lower(),
+            "events": request.form.get("events").lower()})
+    flash("Updated!", 'success')
+
+    return redirect(url_for("profile", username=user
+                            ))
+
+
+@app.route('/delete_profile/<profile_id>')
+def delete_profile(profile_id):
+    mongo.db.users.remove({'_id': ObjectId(profile_id)})
+    flash("User Deleted!", 'success')
+    return redirect(url_for("login"))
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
