@@ -38,6 +38,12 @@ footer{
     background-color: rgba(0, 0, 0, .1)
 }
 
+label{
+    color: white;
+    text-align: center;
+    margin-left: 120px;
+} 
+
 @media only screen and (max-width: 600px) {
     .postText{
 margin: 0px;
