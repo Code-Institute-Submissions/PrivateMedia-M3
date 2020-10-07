@@ -16,15 +16,15 @@
 								/>
 							</p>
 							<hr />
-							<p>
+							<p id="profileName">
 								<i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i>
 								{{active_user.username}}
 							</p>
-							<p>
+							<p id="profileAddress">
 								<i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>
 								{{active_user.address}}
 							</p>
-							<p>
+							<p id="profileDob">
 								<i
 									class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"
 								></i>
@@ -38,7 +38,7 @@
 					<div class="w3-card w3-round w3-white w3-hide-small">
 						<div class="w3-container">
 							<p>Hobbies</p>
-							<p>
+							<p id="profileHobbies">
 								<span class="w3-tag w3-small w3-theme-d5">{{active_user.hobbies}}</span>
 							</p>
 						</div>
@@ -55,11 +55,12 @@
 							<div class="w3-card w3-round w3-white">
                             <form action="{{ url_for('new_post', user=active_user.username) }}" method="post" >
 								<div class="w3-container w3-padding">
-									<h6 class="w3-opacity">What's on  your mind now?</h6>
+                                
+									<p class="w3-opacity"><label for="postText">What's on  your mind now?</label></p>
 									<p name="post"  contenteditable="false" class=" w3-padding">
-									<textarea name="post" class="postText" required></textarea>
+									<textarea id="postText" name="post" class="postText" required></textarea>
 									</p>
-									<button type="submit" class="w3-button w3-theme">
+									<button style="background-color:#344046 important;" id="submitPost" type="submit" class="w3-button w3-theme">
 										<i class="fa fa-pencil"></i>  Post
 									</button>
 								</div>
@@ -71,18 +72,18 @@
 					<div class="w3-container w3-card w3-white w3-round w3-margin">
                         {% for post in user_post%}
 						<br />
-						<span class="w3-right w3-opacity">{{post.date}}</span>
-						<span>{{post.user_id}}</span>
+						<span id="postDate" class="w3-right w3-opacity">{{post.date}}</span>
+						<span id="postUsername">{{post.user_id}}</span>
 						<br />
                           <hr class="w3-clear" />
                
-						<p >
+						<p id="newPost">
                            {{post.post}}
 						</p>
-						<a href="{{ url_for('edit_post', post_id=post._id, user=post.user_id) }}" id="myBtn" class="w3-button w3-theme-d1 w3-margin-bottom">
+						<a id="editButton" href="{{ url_for('edit_post', post_id=post._id, user=post.user_id) }}" class="w3-button w3-theme-d1 w3-margin-bottom">
 							<i class="fa fa-edit"></i> Edit
 						</a>
-						<a href="{{url_for('delete_post', post_id=post._id, user=post.user_id)}}" class="w3-button w3-theme-d1 w3-margin-bottom">
+						<a id="delete" href="{{url_for('delete_post', post_id=post._id, user=post.user_id)}}" class="w3-button w3-theme-d1 w3-margin-bottom">
 							<i class="fa fa-trash"></i> Delete
 						</a>
                         <hr class="w3-clear" />
@@ -96,7 +97,7 @@
 					<div class="w3-card w3-round w3-white w3-center">
 						<div class="w3-container">
 							<p>Upcoming Events:</p>
-							<p>{{active_user.events}}</p>
+							<p id="profileEvents">{{active_user.events}}</p>
 						</div>
 					</div>
 					<br />
