@@ -59,7 +59,7 @@
 							</div>
 						</form>
                         							<div class="wthree-field">
-								<button id="deleteButton" onclick="document.getElementById('id01').style.display='block'" style="background-color:#9b0707" type="submit" class="btn">Delete Account</button>
+								<button id="deleteButton" onclick="document.getElementById('id01').style.display='block'" type="submit" class="btn">Delete Account</button>
 							</div>
 									
 							
@@ -74,7 +74,7 @@
  <ul class="list-login-bottom">
 								<li class="clearfix"></li>
 							</ul>
-<p> <a id="submitDelete" style="background-color:red; color:white" href="{{ url_for('delete_profile', profile_id=profile_id) }}" type="button" class="w3-button w3-theme-d1 w3-margin-bottom">Delete</a></p>
+<p> <a id="submitDelete" href="{{ url_for('delete_profile', profile_id=profile_id) }}" type="button" class="w3-button w3-theme-d1 w3-margin-bottom">Delete</a></p>
       </div>
     </div>
 

@@ -44,6 +44,20 @@ label{
     margin-left: 120px;
 } 
 
+.text-center, .icon {
+    color: #ccc; font-style: italic;
+}
+
+#submitPost{
+        color: #fff !important;
+    background-color: #57707d !important;
+}
+
+#deleteButton, #submitDelete{
+    background-color:#9b0707;
+    color:white;
+}
+
 @media only screen and (max-width: 600px) {
     .postText{
 margin: 0px;
