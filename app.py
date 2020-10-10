@@ -1,12 +1,11 @@
 import os
 from flask import (
     Flask, render_template, redirect, flash, request, url_for, session)
-from flask_pymongo import PyMongo, pymongo, DESCENDING
+from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from flask_toastr import Toastr
 from werkzeug.security import generate_password_hash, check_password_hash
 import time
-import math
 
 if os.path.exists("env.py"):
   import env

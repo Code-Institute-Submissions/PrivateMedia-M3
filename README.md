@@ -78,7 +78,7 @@ The user experience is quite intuitive and familiar for users who currently owns
 Testing on Private Media Website was carried out **manually** and by Atutomated Testing using **Cypress**. The test approach was to test every user story individually by creating 
 user journies and scenarios required to navigate through the entire site. While testing, a few bugs were found and fixed and these are are all listed below. **Devtool** and **light house** was also used to debug and test the application.
 
-The link to the test automation repo used for this project can be found <a href="https://github.com/MichaelOsarumwense/Cypress-e2e-SoccerPredictor-m2.git" target="_blank">here.</a>
+The link to the test automation repo used for this project can be found <a href="https://github.com/MichaelOsarumwense/e2e-Private-Media.git" target="_blank">here.</a>
 
 ### **Cases**
 <ul>
