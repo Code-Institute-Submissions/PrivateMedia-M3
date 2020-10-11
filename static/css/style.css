@@ -46,10 +46,8 @@ footer {
 	background-color: rgba(0, 0, 0, .1)
 }
 
-.label {
-	color: white;
-	text-align: center;
-	margin-left: 120px;
+.label, #signUp {
+	color:  #fff !important;
 }
 
 .text-center,
