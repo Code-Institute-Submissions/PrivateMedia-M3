@@ -1,74 +1,54 @@
 <!DOCTYPE html>
 <html lang="en-us">
-<head>
-	<title>Private Media</title>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta charset="utf-8" />
-    <meta name="description" content="A Private Media Platform">
-    <meta name="keywords" content="Private, Media, thoughts, expression, diary">
-    <meta name="author" content="Michael Osarumwense">
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css" />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="/static/css/style.css" type="text/css" media="all"/>
-        {{ toastr.include_jquery() }}
-        {{ toastr.include_toastr_css() }}
-        {{ toastr.message() }}
-</head>
-	<body class="w3-theme-l5">
-		<!-- Navbar -->
-		<div class="w3-top">
-			<div class="w3-bar w3-theme-d2 w3-left-align w3-large">
-				<a id="mlogout"
-					href="{{ url_for('logout') }}"
-					class="w3-bar-item w3-hide-medium w3-button w3-hide-large w3-right w3-padding-large w3-large w3-theme-d2 w3-hover-white"
-				>
-					Logout</a
-				>
-				<a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"
-					><i class="fa fa-home w3-margin-right"></i>Private Media</a
-				>
-
-				<a id="mLogout"
-					href="{{ url_for('logout') }}"
-					class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white"
-				>
-					Logout
-				</a>
-			</div>
-		</div>
-
-		<!-- Page Container -->
-		<div id="pageContainer" class="w3-container w3-content">
-			<!-- The Grid -->
-			<div class="w3-row">
-             {% block index_Base %} {% endblock %}
-			</div>
-			<!-- End Page Container -->
-		</div>
-		<br />
-		<!-- Footer -->
-		<footer
-			class="w3-container w3-theme-d3 w3-padding-16"
-		>
-			<h5>Footer</h5>
-		</footer>
-
-		<script>
-			// Used to toggle the menu on smaller screens when clicking on the menu button
-			function openNav() {
-				var x = document.getElementById('navDemo');
-				if (x.className.indexOf('w3-show') == -1) {
-					x.className += ' w3-show';
-				} else {
-					x.className = x.className.replace(' w3-show', '');
-				}
-			}
-		</script>
-       <script src="/static/js/script.js"></script>
-              {{ toastr.include_toastr_js() }}
-	</body>
+   <head>
+      <title>Private Media</title>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="description" content="A Private Media Platform">
+      <meta name="keywords" content="Private, Media, thoughts, expression, diary">
+      <meta name="author" content="Michael Osarumwense">
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+      <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+      <link rel="stylesheet" href="/static/css/style.css" type="text/css" media="all"/>
+   </head>
+   <body class="w3-theme-l5">
+      <!-- Navbar -->
+      <div class="w3-top">
+         <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
+            <a id="mlogout"
+               href="{{ url_for('logout') }}"
+               class="w3-bar-item w3-hide-medium w3-button w3-hide-large w3-right w3-padding-large w3-large w3-theme-d2 w3-hover-white">
+            Logout</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4">
+            <i class="fa fa-home w3-margin-right"></i>Private Media</a>
+            <a id="mLogout"
+               href="{{ url_for('logout') }}"
+               class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white">
+            Logout
+            </a>
+         </div>
+      </div>
+      <!-- Page Container -->
+      <div id="pageContainer" class="w3-container w3-content">
+         <!-- The Grid -->
+         <div class="w3-row">
+            {% block index_Base %} {% endblock %}
+         </div>
+         <!-- End Page Container -->
+      </div>
+      <br />
+      <!-- Footer -->
+      <footer
+         class="w3-container w3-theme-d3 w3-padding-16">
+         <h5>Footer</h5>
+      </footer>
+      {{ toastr.include_jquery() }}
+      {{ toastr.include_toastr_css() }}
+      {{ toastr.message() }}
+      <script src="/static/js/script.js"></script>
+      {{ toastr.include_toastr_js() }}
+   </body>
 </html>

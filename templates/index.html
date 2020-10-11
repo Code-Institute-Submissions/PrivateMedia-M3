@@ -1,107 +1,101 @@
 {% extends 'indexBase.html'%}
-				{% block index_Base %}
-				<!-- Left Column -->
-				<div class="w3-col m3">
-					<!-- Profile -->
-					<div class="w3-card w3-round w3-white">
-						<div class="w3-container">
-							<a id="userProfile" href="{{ url_for('edit_profile', profile_id=active_user._id, user=active_user.username) }}" 
-								><h4 class="w3-center"><i class="fa fa-edit"></i> Edit Profile</h4></a
-							>
-							<p class="w3-center">
-								<img id="profileImg"
-									src="/static/images/01.png"
-									class="w3-circle"
-									alt="Avatar"
-								/>
-							</p>
-							<hr />
-							<p id="profileName">
-								<i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i>
-								{{active_user.username}}
-							</p>
-							<p id="profileAddress">
-								<i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>
-								{{active_user.address}}
-							</p>
-							<p id="profileDob">
-								<i
-									class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"
-								></i>
-								{{active_user.dob}}
-							</p>
-						</div>
-					</div>
-					<br />
-
-					<!-- Interests -->
-					<div class="w3-card w3-round w3-white w3-hide-small">
-						<div class="w3-container">
-							<p>Hobbies</p>
-							<p id="profileHobbies">
-								<span class="w3-tag w3-small w3-theme-d5">{{active_user.hobbies}}</span>
-							</p>
-						</div>
-					</div>
-					<br />
-
-					<!-- End Left Column -->
-				</div>
-
-				<!-- Middle Column -->
-				<div class="w3-col m7">
-					<div class="w3-row-padding">
-						<div class="w3-col m12">
-							<div class="w3-card w3-round w3-white">
-                            <form action="{{ url_for('new_post', user=active_user.username) }}" method="post" >
-								<div class="w3-container w3-padding">
-                                
-									<p class="w3-opacity"><label for="postText">What's on  your mind now?</label></p>
-									<p name="post"  contenteditable="false" class=" w3-padding">
-									<textarea id="postText" name="post" class="postText" required></textarea>
-									</p>
-									<button id="submitPost" type="submit" class="w3-button w3-theme">
-										<i class="fa fa-pencil"></i>  Post
-									</button>
-								</div>
-                                </form>
-							</div>
-						</div>
-					</div>
-
-					<div class="w3-container w3-card w3-white w3-round w3-margin">
-                        {% for post in user_post%}
-						<br />
-						<span id="postDate" class="w3-right w3-opacity">{{post.date}}</span>
-						<span id="postUsername">{{post.user_id}}</span>
-						<br />
-                          <hr class="w3-clear" />
-               
-						<p id="newPost">
-                           {{post.post}}
-						</p>
-						<a id="editButton" href="{{ url_for('edit_post', post_id=post._id, user=post.user_id) }}" class="w3-button w3-theme-d1 w3-margin-bottom">
-							<i class="fa fa-edit"></i> Edit
-						</a>
-						<a id="delete" href="{{url_for('delete_post', post_id=post._id, user=post.user_id)}}" class="w3-button w3-theme-d1 w3-margin-bottom">
-							<i class="fa fa-trash"></i> Delete
-						</a>
-                        <hr class="w3-clear" />
-                        {% endfor %}
-					</div>
-
-					<!-- End Middle Column -->
-				</div>
-				<!-- Right Column -->
-				<div class="w3-col m2">
-					<div class="w3-card w3-round w3-white w3-center">
-						<div class="w3-container">
-							<p>Upcoming Events:</p>
-							<p id="profileEvents">{{active_user.events}}</p>
-						</div>
-					</div>
-					<br />
-
-					<!-- End Right Column -->
-				</div>
-              {% endblock %}
+{% block index_Base %}
+<!-- Left Column -->
+<div class="w3-col m3">
+   <!-- Profile -->
+   <div class="w3-card w3-round w3-white">
+      <div class="w3-container">
+         <a id="userProfile" href="{{ url_for('edit_profile', profile_id=active_user._id, user=active_user.username) }}" 
+            >
+            <h4 class="w3-center"><i class="fa fa-edit"></i> Edit Profile</h4>
+         </a
+            >
+         <p class="w3-center">
+            <img id="profileImg"
+               src="/static/images/01.png"
+               class="w3-circle"
+               alt="Avatar"
+               />
+         </p>
+         <hr />
+         <p id="profileName">
+            <i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i>
+            {{active_user.username}}
+         </p>
+         <p id="profileAddress">
+            <i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>
+            {{active_user.address}}
+         </p>
+         <p id="profileDob">
+            <i
+               class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"
+               ></i>
+            {{active_user.dob}}
+         </p>
+      </div>
+   </div>
+   <br />
+   <!-- Interests -->
+   <div class="w3-card w3-round w3-white w3-hide-small">
+      <div class="w3-container">
+         <p>Hobbies</p>
+         <p id="profileHobbies">
+            <span class="w3-tag w3-small w3-theme-d5">{{active_user.hobbies}}</span>
+         </p>
+      </div>
+   </div>
+   <br />
+   <!-- End Left Column -->
+</div>
+<!-- Middle Column -->
+<div class="w3-col m7">
+   <div class="w3-row-padding">
+      <div class="w3-col m12">
+         <div class="w3-card w3-round w3-white">
+            <form action="{{ url_for('new_post', user=active_user.username) }}" method="post" >
+               <div class="w3-container w3-padding">
+                  <p class="w3-opacity"><label for="postText">What's on  your mind now?</label></p>
+                  <p contenteditable="false" class=" w3-padding">
+                     <textarea id="postText" name="post" class="postText" required></textarea>
+                  </p>
+                  <button id="submitPost" type="submit" class="w3-button w3-theme">
+                  <i class="fa fa-pencil"></i>  Post
+                  </button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+   <div class="w3-container w3-card w3-white w3-round w3-margin">
+      {% for post in user_post%}
+      <br />
+      <span id="postDate" class="w3-right w3-opacity">{{post.date}}</span>
+      <span id="postUsername">{{post.user_id}}</span>
+      <br />
+      <hr class="w3-clear" />
+      <p id="newPost">
+         {{post.post}}
+      </p>
+      <a id="editButton" href="{{ url_for('edit_post', post_id=post._id, user=post.user_id) }}" class="w3-button w3-theme-d1 w3-margin-bottom">
+      <i class="fa fa-edit"></i> Edit
+      </a>
+      <a id="delete" href="{{url_for('delete_post', post_id=post._id, user=post.user_id)}}" class="w3-button w3-theme-d1 w3-margin-bottom">
+      <i class="fa fa-trash"></i> Delete
+      </a>
+      <hr class="w3-clear" />
+      {% endfor %}
+   </div>
+   <!-- End Middle Column -->
+</div>
+<!-- Right Column -->
+<div class="w3-col m2">
+   <div class="w3-card w3-round w3-white w3-center">
+      <div class="w3-container">
+         <p>Upcoming Events:</p>
+         <p id="profileEvents">{{active_user.events}}</p>
+      </div>
+   </div>
+   <br />
+   <!-- End Right Column -->
+</div>
+{% endblock %}
