@@ -1,38 +1,35 @@
 {% extends 'base.html'%} 
-				{% block header %}
-                	<a id="register" href="{{ url_for('register') }}" class="">Register</a>
-                 {% endblock %}
+{% block header %}
+<a id="register" href="{{ url_for('register') }}" class="">Register</a>
+{% endblock %}
 {% block content %}
-
-						<form action="{{ url_for('login') }}" method="post" >
-                         <label for="username">username</label>
-							<div class="field-group">
-								<span class="fa fa-user" aria-hidden="true"></span>
-								<div class="wthree-field">
-                                   
-									<input name="username" id="username" type="text" value="" placeholder="username" required/>
-								</div>
-							</div>
-                            <label for="password">password</label>
-							<div class="field-group">
-                            
-								<span class="fa fa-lock" aria-hidden="true"></span>
-								<div class="wthree-field">
-									<input name="password" id="password" type="Password" placeholder="password" required/>
-								</div>
-							</div>
-							<div class="wthree-field">
-								<button id="submitButton" type="submit" class="btn">Login</button>
-							</div>
-							<ul class="list-login">
-								<li>
-									<a id="resetPassword" href="{{ url_for('forgotPassword') }}" class="text-right"><span class="fas fa-unlock-alt" aria-hidden="true"></span>  
-                                    <span class="fas fa-key" aria-hidden="true"></span> Reset Password?</a>
-								</li>
-								<li class="clearfix"></li>
-							</ul>
-							<ul class="list-login-bottom">
-								<li class="clearfix"></li> <i class=""></i>
-							</ul>
-						</form>
+<form action="{{ url_for('login') }}" method="post" >
+   <label class="label" for="username">username</label>
+   <div class="field-group">
+      <span class="fa fa-user" aria-hidden="true"></span>
+      <div class="wthree-field">
+         <input name="username" id="username" type="text" value="" placeholder="username" required/>
+      </div>
+   </div>
+   <label  class="label" for="password">password</label>
+   <div class="field-group">
+      <span class="fa fa-lock" aria-hidden="true"></span>
+      <div class="wthree-field">
+         <input name="password" id="password" type="Password" placeholder="password" required/>
+      </div>
+   </div>
+   <div class="wthree-field">
+      <button id="submitButton" type="submit" class="btn">Login</button>
+   </div>
+   <ul class="list-login">
+      <li>
+         <a id="resetPassword" href="{{ url_for('forgotPassword') }}" class="text-right"><span class="fas fa-unlock-alt" aria-hidden="true"></span>  
+         <span class="fas fa-key" aria-hidden="true"></span> Reset Password?</a>
+      </li>
+      <li class="clearfix"></li>
+   </ul>
+   <ul class="list-login-bottom">
+      <li class="clearfix"></li>
+   </ul>
+</form>
 {% endblock %}

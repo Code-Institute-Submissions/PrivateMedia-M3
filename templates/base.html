@@ -1,54 +1,50 @@
 <!DOCTYPE html>
 <html lang="en-us">
-	<!-- Head -->
-
-	<head>
-		<title>Private Media</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta charset="utf-8" />
-        <meta name="description" content="A Private Media Platform">
-        <meta name="keywords" content="Private, Media, thoughts, expression, diary">
-        <meta name="author" content="Michael Osarumwense">
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous"/>
-		<link href="//fonts.googleapis.com/css?family=Quattrocento+Sans:400,400i,700,700i" rel="stylesheet"/>
-		<link href="//fonts.googleapis.com/css?family=Mukta:200,300,400,500,600,700,800" rel="stylesheet"/>
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="{{url_for('static', filename='libraries/w3/style.css')}}" type="text/css" media="all" />
-        <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" media="all" />
-        {{ toastr.include_jquery() }}
-        {{ toastr.include_toastr_css() }}
-        {{ toastr.message() }}
-	</head>
-
-		<body>
-		<section class="main">
-			<div class="layer">
-				<div class="bottom-grid">
-					<div class="logo">
-						<h1>
-							<a id="logo" href="{{ url_for('login') }}">Private Media</a>
-						</h1>
-					</div>
-					<div class="links">
-						<ul class="links-unordered-list">
-							<li class="active">
-								{% block header %} {% endblock %}
-							</li>
-
-						</ul>
-					</div>
-				</div>       
-                    <div class="content-w3ls">
-					<div class="content-bottom">
-                        {% block content %} {% endblock %}
-						<div class="text-center icon">
-							<span></span>Private media lets you share your thoughts and experiences without having to worry about anyone snooping in your business. </span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-        {{ toastr.include_toastr_js() }}
-            <script src="/static/js/script.js"></script>
-	</body>
+   <head>
+      <title>Private Media</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta charset="utf-8" />
+      <meta name="description" content="A Private Media Platform">
+      <meta name="keywords" content="Private, Media, thoughts, expression, diary">
+      <meta name="author" content="Michael Osarumwense">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous"/>
+      <link href="//fonts.googleapis.com/css?family=Quattrocento+Sans:400,400i,700,700i" rel="stylesheet"/>
+      <link href="//fonts.googleapis.com/css?family=Mukta:200,300,400,500,600,700,800" rel="stylesheet"/>
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <link rel="stylesheet" href="{{url_for('static', filename='libraries/w3/style.css')}}" type="text/css" media="all" />
+      <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" media="all" />
+   </head>
+   <body>
+      <section class="main">
+         <div class="layer">
+            <div class="bottom-grid">
+               <div class="logo">
+                  <h1>
+                     <a id="logo" href="{{ url_for('login') }}">Private Media</a>
+                  </h1>
+               </div>
+               <div class="links">
+                  <ul class="links-unordered-list">
+                     <li class="active">
+                        {% block header %} {% endblock %}
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="content-w3ls">
+               <div class="content-bottom">
+                  {% block content %} {% endblock %}
+                  <div class="text-center icon">
+                     <span>Private media lets you share your thoughts and experiences without having to worry about anyone snooping in your business. </span>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      {{ toastr.include_jquery() }}
+      {{ toastr.include_toastr_css() }}
+      {{ toastr.message() }}
+      {{ toastr.include_toastr_js() }}
+      <script src="/static/js/script.js"></script>
+   </body>
 </html>

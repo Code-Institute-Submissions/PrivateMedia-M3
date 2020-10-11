@@ -1,30 +1,27 @@
 {% extends 'indexBase.html'%} 
-				{% block index_Base %}
-                
-				<!-- Middle Column -->
-				<div class="w3-col m7">
-					<div class="w3-row-padding">
-						<div class="w3-col m12">
-							<div class="w3-card w3-round w3-white">
-                            <form action="{{ url_for('update_post', post_id=post_id, user=user) }}" method="post" >
-								<div class="w3-container w3-padding">
-									
-                                    <label for="post_content"><p class="w3-opacity">What's on  your mind now?</p></label>
-									<p name="post"  contenteditable="false" class=" w3-padding">
-									<textarea id="post_content" name="post_content" class="postText" required>{{current_post.post}}</textarea>
-									</p>
-									<button id="saveButton" type="submit" class="w3-button w3-theme">
-										<i class="fa fa-save"></i> Save
-									</button>
-                                    <button id="backButton" onclick="goBack()" type="button" class="w3-button w3-theme">
-										<i class="fa fa-window-close"></i> cancel
-									</button>
-								</div>
-                                </form>
-							</div>
-						</div>
-					</div>
-
-					<!-- End Middle Column -->
-				</div>
-                 {% endblock %}
+{% block index_Base %}
+<!-- Middle Column -->
+<div class="w3-col m7">
+   <div class="w3-row-padding">
+      <div class="w3-col m12">
+         <div class="w3-card w3-round w3-white">
+            <form action="{{ url_for('update_post', post_id=post_id, user=user) }}" method="post" >
+               <div class="w3-container w3-padding">
+                  <label for="post_content">What's on  your mind now?</label>
+                  <p contenteditable="false" class=" w3-padding">
+                     <textarea id="post_content" name="post_content" class="postText" required>{{current_post.post}}</textarea>
+                  </p>
+                  <button id="saveButton" type="submit" class="w3-button w3-theme">
+                  <i class="fa fa-save"></i> Save
+                  </button>
+                  <button id="backButton" onclick="goBack()" type="button" class="w3-button w3-theme">
+                  <i class="fa fa-window-close"></i> cancel
+                  </button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+   <!-- End Middle Column -->
+</div>
+{% endblock %}
