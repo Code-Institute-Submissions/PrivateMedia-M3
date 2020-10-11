@@ -1,3 +1,5 @@
+/* Main */
+
 .main {
 	background: url(../images/bg.jpg) no-repeat center;
 	background-size: cover;
@@ -8,78 +10,94 @@
 	position: relative;
 	min-height: 100vh;
 }
-		html,
-		body,
-		h1,
-		h2,
-		h3,
-		h4,
-		h5 {
-			font-family: 'Open Sans', sans-serif;
-		}
-footer{
-    	margin-bottom: 0px; text-align: center
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5 {
+	font-family: 'Open Sans', sans-serif;
 }
 
-#pageContainer{
-   max-width: 1400px; margin-top: 80px
+footer {
+	margin-bottom: 0px;
+	text-align: center
 }
 
-#profileImg{
-   height: 106px; width: 106px
+#pageContainer {
+	max-width: 1400px;
+	margin-top: 80px
 }
 
-#userProfile{
-   text-decoration: none
+#profileImg {
+	height: 106px;
+	width: 106px
 }
 
-.a:hover, .button:hover{
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, .1)
+#userProfile {
+	text-decoration: none
 }
 
-label{
-    color: white;
-    text-align: center;
-    margin-left: 120px;
-} 
-
-.text-center, .icon {
-    color: #ccc; font-style: italic;
+.a:hover,
+.button:hover {
+	cursor: pointer;
+	background-color: rgba(0, 0, 0, .1)
 }
 
-#submitPost{
-        color: #fff !important;
-    background-color: #57707d !important;
+.label {
+	color: white;
+	text-align: center;
+	margin-left: 120px;
 }
 
-#deleteButton, #submitDelete{
-    background-color:#9b0707;
-    color:white;
+.text-center,
+.icon {
+	color: #ccc;
+	font-style: italic;
 }
+
+#submitPost {
+	color: #fff !important;
+	background-color: #57707d !important;
+}
+
+#deleteButton,
+#submitDelete {
+	background-color: #9b0707;
+	color: white;
+}
+
+
+/* Mobile Devices */
 
 @media only screen and (max-width: 600px) {
-    .postText{
-margin: 0px;
-    width: 214px;
-    height: 94px;
+	.postText {
+		margin: 0px;
+		width: 214px;
+		height: 94px;
+	}
 }
-}
+
 
 /* Large devices (laptops/desktops, 992px and up) */
+
 @media only screen and (min-width: 992px) {
-    .postText{
-     margin: 0px;
-    width: 486px;
-    height: 148px;
-    }
+	.postText {
+		margin: 0px;
+		width: 486px;
+		height: 148px;
+	}
 }
 
+
 /* Extra large devices (large laptops and desktops, 1200px and up) */
+
 @media only screen and (min-width: 1200px) {
-    .postText{
-    margin: 0px;
-    height: 142px;
-    width: 700px;
-    }
+	.postText {
+		margin: 0px;
+		height: 142px;
+		width: 700px;
+	}
 }
