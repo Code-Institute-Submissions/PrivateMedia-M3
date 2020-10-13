@@ -76,15 +76,28 @@ footer {
 		width: 214px;
 		height: 94px;
 	}
+
+    .w3-container, .w3-panel {
+    padding: 0.5em 16px;
+}
 }
 
 
 /* Large devices (laptops/desktops, 992px and up) */
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 768px) {
+    div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color:#57707d;
+
+  padding: 25px;
+}
+
 	.postText {
 		margin: 0px;
-		width: 486px;
+		width: 350px;
 		height: 148px;
 	}
 }
@@ -93,6 +106,15 @@ footer {
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 
 @media only screen and (min-width: 1200px) {
+
+     div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+
+  padding: 50px;
+}
+
 	.postText {
 		margin: 0px;
 		height: 142px;
