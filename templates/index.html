@@ -1,9 +1,9 @@
 {% extends 'indexBase.html'%}
 {% block index_Base %}
 <!-- Left Column -->
-<div class="w3-col m3">
+<div class="w3-col m3 sticky">
    <!-- Profile -->
-   <div class="w3-card w3-round w3-white">
+   <div  style="position: sticky" class="w3-card w3-round w3-white">
       <div class="w3-container">
          <a id="userProfile" href="{{ url_for('edit_profile', profile_id=active_user._id, user=active_user.username) }}" 
             >
@@ -88,10 +88,10 @@
    <!-- End Middle Column -->
 </div>
 <!-- Right Column -->
-<div class="w3-col m2">
+<div class="w3-col m2 sticky">
    <div class="w3-card w3-round w3-white w3-center">
       <div class="w3-container">
-         <p>Upcoming Events:</p>
+         <p>Events:</p>
          <p id="profileEvents">{{active_user.events}}</p>
       </div>
    </div>
