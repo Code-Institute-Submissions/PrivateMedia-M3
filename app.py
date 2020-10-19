@@ -154,10 +154,10 @@ def resetPassword():
 @app.route("/new_post/<user>", methods=["GET", "POST"])
 def new_post(user):
     # Grab the session user's username from mongodb
-    user = mongo.db.users.find_one(
+    session_user = mongo.db.users.find_one(
             {"username": user})
 
-    if user:
+    if session_user:
         upload_post = {
             "date": time.strftime("%Y-%m-%d %H:%M"),
             "post": request.form.get("post"),

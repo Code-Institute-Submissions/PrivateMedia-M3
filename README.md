@@ -130,6 +130,7 @@ The link to the test automation repo used for this project can be found <a href=
 <li>fixed a bug where logo onclick was resulting in url not found on login</li>
 <li>Fixed a bug where new users upon regisration gets an error because of wrong username reference</li>
 <li>Fixed a bug where password could be left blank when updating user profile details due to password input field missing the required remark</li>
+<li>Fixed a bug where new post were not being displayed due to user refernce tempering (bug caught by automation test after latest code change.</li>
 </ul>
 
 ## **Deployment**
