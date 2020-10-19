@@ -70,10 +70,12 @@ def register():
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
+        # Informs the user that username already exis
         if existing_user:
             flash("Username already exists", 'error')
             return redirect(url_for("register"))
 
+        # creates a new user
         register = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password")),
@@ -100,15 +102,16 @@ def profile(username):
     active_user = mongo.db.users.find_one(
         {"username": session["user"]})
 
+    # returns the most recent user post
     username = active_user["username"]
     user_post = mongo.db.posts.find({"user_id":
                                     session["user"]}).sort("_id", -1)
-
     if session["user"]:
         return render_template("index.html", username=username,
                                active_user=active_user,
                                user_post=user_post)
 
+    # returns session user details
     return redirect(url_for("index", username=username,
                             active_user=active_user, user_post=user_post))
 
@@ -119,11 +122,12 @@ def resetPassword():
         # Check username exists in mongodb
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-
+        # defining user secret from mongo
         secret = existing_user["secret"]
-
+        # retrieving user inputed secrete
         user_secret = request.form.get("secret").lower()
 
+        # checking user inputed secret matches user secret in db
         if existing_user and (user_secret == secret):
             # Ensure hashed password matches user input
             mongo.db.users.update({'_id': ObjectId(existing_user["_id"])},
@@ -140,7 +144,7 @@ def resetPassword():
             flash("Password Changed", 'success')
             return redirect(url_for("login"))
         else:
-            # Username doesn't exist
+            # no match found username and secrete
             flash("No Match Found", 'error')
             return redirect(url_for("forgotPassword"))
 
@@ -150,16 +154,17 @@ def resetPassword():
 @app.route("/new_post/<user>", methods=["GET", "POST"])
 def new_post(user):
     # Grab the session user's username from mongodb
-    userMan = mongo.db.users.find_one(
+    user = mongo.db.users.find_one(
             {"username": user})
 
-    if userMan:
+    if user:
         upload_post = {
             "date": time.strftime("%Y-%m-%d %H:%M"),
             "post": request.form.get("post"),
+            # one to many entity type reference
             "user_id": user
             }
-
+        # Insert new post
         mongo.db.posts.insert_one(upload_post)
         flash("New Post!", 'success')
         return redirect(url_for("profile", username=user))
