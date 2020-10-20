@@ -35,11 +35,11 @@ The user experience is quite intuitive and familiar for users who currently owns
 
 ## **Mocks**
 ### Web and Mobile
-**As a basic layout <a href="/mockArchitecture.png" target="_blank">here is a link </a> to the web wireFrame and Mock up used in creating Private Media.**
+**As a basic layout <a href="/Frames/ux-Mocks/" target="_blank">here is a link </a> to the web wireFrame and Mock up used in creating Private Media.**
 
 ## **Data Modelling**
 ### Entity Relationship Diagram
-**As a basic layout <a href="/Frames/entityRelationship.png" target="_blank">here is a link </a> to the entity relationship diagram used in creating Private Media.**
+**As a basic layout <a href="/Frames/wireFrames-Architecture/" target="_blank">here is a link </a> to the entity relationship diagram used in creating Private Media.**
 
 ## **Features**
 ### Existing Features
