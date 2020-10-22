@@ -5,14 +5,14 @@
 {% block content %}	
 <form action="{{ url_for('update_profile', profile_id=profile_id, user=current_profile.username) }}" method="post" >
    <label class="label" for="username">Username</label> 
-   <div class="field-group">
+   <div class="field-group required">
       <span class="fa fa-user" aria-hidden="true"></span>
       <div class="wthree-field">
          <input name="username" id="username" type="text" value="{{current_profile.username}}" placeholder="Username" required/>
       </div>
    </div>
    <label class="label" for="secret">Secret</label>
-   <div class="field-group">
+   <div class="field-group required">
       <span class="fa fa-mask" aria-hidden="true"></span>
       <div class="wthree-field">
          <input name="secret" value="{{current_profile.secret}}" id="secret" type="text" placeholder="Security Word" required/>
@@ -47,7 +47,7 @@
       </div>
    </div>
    <label class="label" for="password">Password</label>
-   <div class="field-group">
+   <div class="field-group secret required">
       <span class="fas fa-lock" aria-hidden="true"></span>
       <div class="wthree-field">
          <input name="password" id="password" value="{{current_profile.password}}" type="password" placeholder="Password" required/>

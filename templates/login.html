@@ -5,14 +5,14 @@
 {% block content %}
 <form action="{{ url_for('login') }}" method="post" >
    <label class="label" for="username">username</label>
-   <div class="field-group">
+   <div class="field-group required">
       <span class="fa fa-user" aria-hidden="true"></span>
       <div class="wthree-field">
          <input name="username" id="username" type="text" value="" placeholder="username" required/>
       </div>
    </div>
    <label  class="label" for="password">password</label>
-   <div class="field-group">
+   <div class="field-group required">
       <span class="fa fa-lock" aria-hidden="true"></span>
       <div class="wthree-field">
          <input name="password" id="password" type="Password" placeholder="password" required/>
