@@ -63,10 +63,14 @@ footer {
 
 #deleteButton,
 #submitDelete {
-	background-color: #9b0707;
+	background-color: #9b0707 !important;
 	color: white;
 }
 
+  .required:after {
+    content:" *";
+    color: red;
+  }
 
 /* Mobile Devices */
 
