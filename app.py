@@ -53,13 +53,16 @@ def login():
             # Username doesn't exist
             flash("Incorrect Username and/or Password", 'error')
             return redirect(url_for("login"))
+    else:
+        if session.get('user') is not None:
+            return redirect(url_for("profile", username=session["user"]))
     return render_template("login.html")
 
 
 @app.route('/logout')
 def logout():
     # remove username from session
-    session.pop('username', None)
+    session.pop('user', None)
     return redirect(url_for('login'))
 
 
@@ -98,6 +101,12 @@ def register():
 # Profile page
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
+    # verifying if there is an existing user session
+    if session.get("user") is None:
+        return redirect(url_for("login", username=username))
+    if username != session['user']:
+        return redirect(url_for("profile", username=session['user']))
+
     # Grab the session user's username from mongodb
     active_user = mongo.db.users.find_one(
         {"username": session["user"]})
@@ -106,14 +115,10 @@ def profile(username):
     username = active_user["username"]
     user_post = mongo.db.posts.find({"user_id":
                                     session["user"]}).sort("_id", -1)
-    if session["user"]:
-        return render_template("index.html", username=username,
-                               active_user=active_user,
-                               user_post=user_post)
 
-    # returns session user details
-    return redirect(url_for("index", username=username,
-                            active_user=active_user, user_post=user_post))
+    return render_template("index.html", username=username,
+                           active_user=active_user,
+                           user_post=user_post)
 
 
 @app.route("/resetPassword", methods=["GET", "POST"])
