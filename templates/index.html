@@ -41,7 +41,7 @@
    <!-- Interests -->
    <div class="w3-card w3-round w3-white w3-hide-small">
       <div class="w3-container">
-         <p>Hobbies</p>
+         <p>Hobbies:</p>
          <p id="profileHobbies">
             <span class="w3-tag w3-small w3-theme-d5">{{active_user.hobbies}}</span>
          </p>
@@ -82,10 +82,20 @@
       <a id="editButton" href="{{ url_for('edit_post', post_id=post._id, user=post.user_id) }}" class="w3-button w3-theme-d1 w3-margin-bottom">
       <i class="fa fa-edit"></i> Edit
       </a>
-      <a id="delete" href="{{url_for('delete_post', post_id=post._id, user=post.user_id)}}" class="w3-button w3-theme-d1 w3-margin-bottom">
+      <a onclick="document.getElementById('id01').style.display='block'" id="delete" class="w3-button w3-theme-d1 w3-margin-bottom">
       <i class="fa fa-trash"></i> Delete
       </a>
       <hr class="w3-clear" />
+            <!-- Modal-->
+      <div id="id01" class="w3-modal">
+   <div id="modal" class="w3-modal-content">
+      <div class="w3-container">
+         <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+         <p id="deleteWarning"> Are you sure you want to delete your post?</p>
+         <p> <a id="submitDelete" href="{{url_for('delete_post', post_id=post._id, user=post.user_id)}}" type="button" class="w3-button w3-theme-d1 w3-margin-bottom">Delete</a></p>
+      </div>
+   </div>
+</div>
       {% endfor %}
    </div>
    <!-- End Middle Column -->
