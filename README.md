@@ -1,8 +1,8 @@
-# **Soccer Predictor Calculator** 
+# **Private Media** 
 <img src="https://imgur.com/kmriMUr.jpg" style="margin: 0;">
 
 Private Media is personal social space to share anything and everything with yourself. It provides a unique private media experience for users who still want to go online, express their thoughts and unburden their minds without ever having to worry about anyone snooping.
-<a href="http://private-madia-m3.herokuapp.com/" target="_blank">click to visit Soccer Predictor website.</a>
+<a href="http://private-madia-m3.herokuapp.com/" target="_blank">click to visit Private Media.</a>
 ## User Experience
 
 The user experience is quite intuitive and familiar for users who currently owns any social media account as well as for new users. The Ux consist of the following:
@@ -75,10 +75,10 @@ The user experience is quite intuitive and familiar for users who currently owns
 
 ## **Testing**
 <hr>
-Testing on Private Media Website was carried out **manually** and by Atutomated Testing using **Cypress**. The test approach was to test every user story individually by creating 
+Testing on Private Media Website was carried out **manually** and by <a href="https://github.com/MichaelOsarumwense/e2e-Private-Media.git" target="_blank">Atutomated Testing</a> using **Cypress**. The test approach was to test every user story individually by creating 
 user journies and scenarios required to navigate through the entire site. While testing, a few bugs were found and fixed and these are are all listed below. **Devtool** and **light house** was also used to debug and test the application.
 
-The link to the test automation repo used for this project can be found <a href="https://github.com/MichaelOsarumwense/e2e-Private-Media.git" target="_blank">here.</a>
+<a href="https://github.com/MichaelOsarumwense/e2e-Private-Media.git" target="_blank">Here is the link to the test automation repo used for this project.</a>
 
 ### **Cases**
 <ul>
@@ -130,7 +130,7 @@ The link to the test automation repo used for this project can be found <a href=
 <li>fixed a bug where logo onclick was resulting in url not found on login</li>
 <li>Fixed a bug where new users upon regisration gets an error because of wrong username reference</li>
 <li>Fixed a bug where password could be left blank when updating user profile details due to password input field missing the required remark</li>
-<li>Fixed a bug where new post were not being displayed due to user refernce tempering (bug caught by automation test after latest code change.</li>
+<li>Fixed a bug where new post were not being displayed due to user reference tempering (bug caught by automation test after latest code change.</li>
 </ul>
 
 ## **Deployment**
