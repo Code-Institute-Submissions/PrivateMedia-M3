@@ -131,6 +131,7 @@ user journies and scenarios required to navigate through the entire site. While 
 <li>Fixed a bug where new users upon regisration gets an error because of wrong username reference</li>
 <li>Fixed a bug where password could be left blank when updating user profile details due to password input field missing the required remark</li>
 <li>Fixed a bug where new post were not being displayed due to user reference tempering (bug caught by automation test after latest code change.</li>
+<li>Fixed a bug where newly created users were being put into a seesion and logged into the application (caught by the test automation tests).</li>
 </ul>
 
 ## **Deployment**

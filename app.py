@@ -33,7 +33,7 @@ def forgotPassword():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        # Check username exists in mongodb
+        # Check if username exists in mongodb
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
@@ -90,10 +90,9 @@ def register():
         }
         mongo.db.users.insert_one(register)
 
-        # Put new user into a session cookie
-        session['user'] = request.form.get("username").lower()
+        # Flash Success Message
         flash("Registration Successful!", 'success')
-        return redirect(url_for("login", username=session["user"]))
+        return redirect(url_for("login"))
 
     return render_template("register.html")
 
