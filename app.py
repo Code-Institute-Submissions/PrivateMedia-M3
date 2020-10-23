@@ -100,16 +100,15 @@ def register():
 # Profile page
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-    # Grab the session user's username from mongodb
-    active_user = mongo.db.users.find_one(
-        {"username": session["user"]})
-
     # verifying if there is an existing user session
     if session.get("user") is None:
         return redirect(url_for("login", username=username))
     if username != session['user']:
         return redirect(url_for("profile", username=session['user']))
 
+    # Grab the session user's username from mongodb
+    active_user = mongo.db.users.find_one(
+        {"username": session["user"]})
     # returns the most recent user post
     username = active_user["username"]
     user_post = mongo.db.posts.find({"user_id":
@@ -237,6 +236,8 @@ def delete_profile(profile_id):
     session.pop('user', None)
     flash("User Deleted!", 'success')
     return redirect(url_for("login"))
+
+
 
 
 if __name__ == '__main__':
