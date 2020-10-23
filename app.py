@@ -11,7 +11,7 @@ if os.path.exists("env.py"):
   import env
 
 app = Flask(__name__)
-app.secret_key = 'some_secret'
+app.secret_key = os.environ.get('SECRET')
 app.config["MONGO_DBNAME"] = 'private_media'
 app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 
@@ -238,9 +238,7 @@ def delete_profile(profile_id):
     return redirect(url_for("login"))
 
 
-
-
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
-            debug=True)
+            debug=False)
