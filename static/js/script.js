@@ -1,3 +1,4 @@
+//used to go back to previous state
 function goBack() {
   window.history.back();
 }
