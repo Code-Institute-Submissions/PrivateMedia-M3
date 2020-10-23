@@ -1,8 +1,6 @@
 {% extends 'indexBase.html'%}
 {% block index_Base %}
-
 <!-- Social media user page template by w3 school-->
-
 <!-- Left Column -->
 <div class="w3-col m3 sticky">
    <!-- Profile -->
@@ -86,16 +84,16 @@
       <i class="fa fa-trash"></i> Delete
       </a>
       <hr class="w3-clear" />
-            <!-- Modal-->
+      <!-- Modal-->
       <div id="id01" class="w3-modal">
-   <div id="modal" class="w3-modal-content">
-      <div class="w3-container">
-         <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-         <p id="deleteWarning"> Are you sure you want to delete your post?</p>
-         <p> <a id="submitDelete" href="{{url_for('delete_post', post_id=post._id, user=post.user_id)}}" type="button" class="w3-button w3-theme-d1 w3-margin-bottom">Delete</a></p>
+         <div id="modal" class="w3-modal-content">
+            <div class="w3-container">
+               <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+               <p id="deleteWarning"> Are you sure you want to delete your post?</p>
+               <p> <a id="submitDelete" href="{{url_for('delete_post', post_id=post._id, user=post.user_id)}}" type="button" class="w3-button w3-theme-d1 w3-margin-bottom">Delete</a></p>
+            </div>
+         </div>
       </div>
-   </div>
-</div>
       {% endfor %}
    </div>
    <!-- End Middle Column -->
